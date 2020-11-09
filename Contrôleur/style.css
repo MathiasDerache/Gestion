@@ -1,0 +1,195 @@
+body{
+    background-color: rgb(32, 32, 32);
+}
+
+td{
+    color: white;
+    padding: 10px 20px;
+}
+
+
+.add{
+    background: none;
+    color: white;
+    width: 240px;
+    height: 80px;
+    border: 1px solid rgb(26, 121, 39);
+    font-size: 25px;
+    border-radius: 4px;
+    transition: .6s;
+    margin: 50px;
+}
+.add:hover{
+    background: #338033;
+
+}
+
+
+label{
+    color: rgb(207, 206, 206);
+}
+
+table{
+    text-align: center;
+    width: 100%;
+}
+
+.table{
+    padding: 10px;
+}
+
+
+.une{
+    margin: 50px 0px;
+}
+
+
+.autre{
+    background-color: rgb(60, 60, 61);
+    margin: 20px 0;
+    background: none;
+}
+
+.autre:hover{
+    background-color: rgb(45, 143, 45);
+}
+
+
+.modif{
+    background-color: rgb(80, 143, 80);
+    color: white;
+}
+
+.modif:hover{
+
+    background-color: grey;
+}
+
+.textP{
+    margin: 200px auto 50px ;
+}
+
+.rowP{
+    margin-left: 120px;
+} 
+
+.acc{
+    font-size: 4em;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    animation: 1.2s ease-in-out forwards slidein;
+}
+
+@keyframes slidein {
+    from {
+        margin-left: 00%;
+        width: 50%;
+        color: rgba(255, 255, 255, 0);
+    }
+
+    70%{
+        color: rgba(255, 255, 255, 0);
+    }
+    to {
+        margin-left: 22%;
+        width: 50%;
+    }
+}
+.deco {
+    display: block;
+    margin: 150px auto 0;
+    font-size: 30px;
+    font-weight: lighter;
+    color: #333;
+    padding: 25px 80px;
+    background: #ffd17b;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    position: relative;
+    box-shadow: 0 6px #efa424;
+}
+.deco:hover {
+    box-shadow: 0 6px rgb(54, 51, 51);
+    background-color: rgb(116, 26, 26);;
+} 
+
+.portail {
+    display: block;
+    margin: 150px auto 0;
+    font-size: 30px;
+    font-weight: lighter;
+    color: #333;
+    padding: 25px 80px;
+    background: #ffd17b;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    position: relative;
+    box-shadow: 0 6px #efa424;
+}
+.portail:hover {
+    box-shadow: 0 6px rgb(52, 131, 64);
+    background-color: rgb(50, 102, 58);
+} 
+
+.rowP a{
+
+    text-decoration: none;
+}
+
+.form-control {
+    margin-top: 45px;
+    position: relative;
+    height: 50px;
+    font-size: 20px;
+    border: none;
+    border-bottom: 1px solid rgb(255, 255, 255);
+    border-radius: 0;
+    background-color: rgb(32, 32, 32);
+}
+.form-control:focus {
+    box-shadow: none;
+    border-bottom:  2px solid #222;
+    background-color: rgb(32, 32, 32);
+    color: white;
+}
+label {
+    position: absolute;
+    top: 0;
+    font-size: 18px;
+    padding-left: 15px;
+    line-height: 50px;
+    transition: .5s ease;
+    color: white;
+}
+
+.valide{
+    position: absolute;
+    background: none;
+    color: white;
+    width: 240px;
+    height: 80px;
+    border: 1px solid #338;
+    font-size: 25px;
+    border-radius: 4px;
+    transition: .6s;
+}
+
+.valide:hover{
+    background: #338033;
+
+}
+
+.insc{
+    color: white;
+    font-weight: lighter;
+}
+
+.insc a{
+    text-transform: none;
+    text-decoration: none;
+    color: rgb(58, 143, 50);
+}
