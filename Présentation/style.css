@@ -193,3 +193,15 @@ label {
     text-decoration: none;
     color: rgb(58, 143, 50);
 }
+
+.titre{
+    font-size: 4em;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 50px;
+}
+
+hr{
+    background-color: rgba(255, 255, 255, 0.3);
+    width: 40%;
+}

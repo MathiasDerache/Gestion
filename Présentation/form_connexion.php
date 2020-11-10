@@ -15,6 +15,12 @@ session_start();
     <?php include("../DAO/UtilisateurMysqliDAO.php")?>
 
     <div class="container formulaire">
+        <div class="row text-center">
+            <div class="col-12">
+                <h2 class="titre">Connexion</h2>
+                <hr>
+            </div>
+        </div>
         <form action= "portail.php" method="post">
 
                 <div class="row une">

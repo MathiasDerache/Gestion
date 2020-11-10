@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION["userName"])){
-    header('Location: form_connexion.php');
+    header('Location: ../Présentation/form_connexion.php');
 };
 ?>
 <!DOCTYPE html>
@@ -12,13 +12,13 @@ if(!isset($_SESSION["userName"])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau Service</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../Présentation/style.css">
 </head>
 
 <body>
     <?php 
         include_once('../Métier/Service2.php');
-        include('../DAO/ServiceMysqliDAO.php');
+        include('../Service/ServiceService.php');
 
         ServiceMysqliDAO::connectTo();
         
@@ -32,7 +32,7 @@ if(!isset($_SESSION["userName"])){
             
                     $service2 = new Service2();
                     $service2->setNoserv($noserv)->setService($serv)->setVille($ville);
-                    $data = ServiceMysqliDAO::add($service2);
+                    $data = ServiceService::addServ($service2);
                 }
                 }elseif (!empty($_GET) && isset($_GET['action']) && $_GET['action'] == 'modif') {   // Modif
     
@@ -43,15 +43,21 @@ if(!isset($_SESSION["userName"])){
                     $service2 = new Service2();
                     $service2->setNoserv($noserv)->setService($serv)->setVille($ville);
                     // Check Crud_Service
-                    ServiceMysqliDAO::editService($service2);
+                    ServiceService::editServ($service2);
                 }
             if(isset($_GET["action"]) && $_GET["action"] == "delete"){                     // Partie Delete
                 // Check Crud_service.php
-                ServiceMysqliDAO::deleteService($_GET["NOSERV"]);
+                ServiceService::deleteServ($_GET["NOSERV"]);
             }
         }
     ?>
     <div class="container">
+        <div class="row text-center">
+            <div class="col-12">
+                <h2 class="titre">Tableau des Services</h2>
+                <hr>
+        </div>
+        </div>
         <table class="table-hover table-bordered">
             <thead class="table">
 

@@ -44,7 +44,7 @@ if(!isset($_SESSION["userName"]) || $_SESSION["profil"] != "admin"){
             $ville=$data["ville"];
         }
     ?>
-           <form action="/../Contrôleur/tableau_services.php?<?php echo $action ?>" method="post">
+           <form action="../Contrôleur/tableau_services.php?<?php echo $action ?>" method="post">
 
                 <div class="row une">
                         <div class="col-lg-12">

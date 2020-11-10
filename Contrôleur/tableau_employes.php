@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION["userName"])){
-    header('Location: form_connexion.php');
+    header('Location: ../Présentation/form_connexion.php');
 };
 ?>
 <!DOCTYPE html>
@@ -12,14 +12,14 @@ if(!isset($_SESSION["userName"])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau Employes</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../Présentation/style.css">
 </head>
 
 <body>
     <?php
 
         include_once('../Métier/Employe2.php');
-        include('../DAO/EmployesMysqliDAO.php');
+        include('../Service/EmployesService.php');
 
 
         if($_SESSION["profil"] == "admin"){
@@ -39,7 +39,7 @@ if(!isset($_SESSION["userName"])){
                     $noser = $_POST['noserv'];
 
                     $employe->setNoemp($id)->setNom($nom)->setPrenom($prenom)->setEmploi($emp)->setSup($sup)->setEmbauche($embauche)->setSal($sal)->setComm($comm)->setNoserv($noser);
-                    EmployesMysqliDAO::addEmploye($employe);                           // Ajout de l'employe
+                    EmployesService::addEmp($employe);                           // Ajout de l'employe
                 }
             }elseif (!empty($_GET) && isset($_GET['action']) && $_GET['action'] == 'modif') {               // Partie Modif
                     
@@ -56,15 +56,21 @@ if(!isset($_SESSION["userName"])){
                     $noser = $_POST['noserv'];
 
                     $employe->setNoemp($id)->setNom($nom)->setPrenom($prenom)->setEmploi($emp)->setSup($sup)->setEmbauche($embauche)->setSal($sal)->setComm($comm)->setNoserv($noser);
-                    EmployesMysqliDAO::editEmploye($employe);
+                    EmployesService::editEmp($employe);
             }
             elseif(isset($_GET["action"]) && $_GET["action"] == "delete"){                         // Partie Delete
                     // Check Crud.php
-                    EmployesMysqliDAO::deleteEmployes($_GET["NOEMP"]);
+                    EmployesService::deleteEmp($_GET["NOEMP"]);
             }
         };
     ?>
     <div class="container">
+    <div class="row text-center">
+            <div class="col-12">
+                <h2 class="titre">Tableau des Employés</h2>
+                <hr>
+            </div>
+        </div>
         <table class="table-hover table-bordered">
             <thead class="table">
 

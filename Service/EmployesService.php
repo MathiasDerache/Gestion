@@ -2,119 +2,18 @@
     include("../DAO/EmployesMysqliDAO.php");
     class EmployesService extends EmployesMysqliDAO{
 
-        // Connecte à la base de données
-        public function connectTo(){
 
-            $mysqli = new mysqli('localhost', 'mathiasderache', 'mathiasderache', 'gestion_employes');
-            return $mysqli;
+        public function addEmp($employe){
+            EmployesMysqliDAO::addEmploye($employe);
         }
 
 
-        // Recherche le tableau des employes
-        function rechercheEmployes(){
-            $mysqli=connectTo();
-            mysqli_query($mysqli, 'SELECT * FROM emp');
-            $serv = mysqli_query($mysqli, 'SELECT * FROM emp');
-            $row = mysqli_fetch_all($serv, MYSQLI_ASSOC);
-            return $row;
-            
+        public function editEmp($employe){
+            EmployesMysqliDAO::editEmploye($employe);
         }
 
-        // affiche le tableau des employes
-        public function affichageEmployes($row){
-            foreach ($row as $value) { 
-
-                echo  "<tr>";
-                echo "<td>" . $value["noemp"] . "</td>";
-                echo "<td>" . $value["nom"] . "</td>";
-                echo "<td>" . $value["prenom"] . "</td>";
-                echo "<td>" . $value["emploi"] . "</td>";
-                echo "<td>" . $value["sup"] . "</td>";
-                echo "<td>" . $value["embauche"] . "</td>";
-                if($_SESSION["profil"] == "admin"){echo "<td>" . $value["sal"] . "</td>";};
-                if($_SESSION["profil"] == "admin"){echo "<td>" . $value["comm"] . "</td>";};
-                echo "<td>" . $value["noserv"] . "</td>";
-            
-                if($_SESSION["profil"] == "admin"){
-                    echo '<td> <a href="formulaire.php?action=modif&NOEMP='  .$value["noemp"]  .'"><button type="button" class="btn btn-primary modif">Modifier</button></a> </td>';
-                    // condition pour afficher les bouttons supprimer uniquement sur les lignes concernés
-                    if(!array_search($value["noemp"], supEmployes())){
-                        echo '<td> <a href="tableau_employes.php?action=delete&NOEMP=' .$value["noemp"]   .'"><button type="button" class="btn btn-danger">SUPPR</button></a> </td>';
-                    }
-                }
-                
-                echo "</tr>";
-            }
-        }
-        // Ajouter une ligne
-        public function addEmploye(Employe2 $employe): void
-        {
-            $mysqli=connectTo();
-            $stmt = $mysqli->prepare("INSERT INTO emp VALUES(?,?,?,?,?,?,?,?,?)");
-            $id = $employe->getNoemp();
-            $nom = $employe->getNom();
-            $prenom = $employe->getPrenom();
-            $emp = $employe->getEmploi();
-            $sup = $employe->getSup();
-            $embauche = $employe->getEmbauche();
-            $sal = $employe->getSal();
-            $comm = $employe->getComm();
-            $noser = $employe->getNoserv();
-            $stmt->bind_param('isssisddi',$id, $nom, $prenom, $emp, $sup, $embauche, $sal, $comm, $noser);
-            $stmt->execute();
-            $mysqli->close();
-        }
-        //Supprimer une ligne
-        public function deleteEmployes($thisDelete){
-
-            $mysqli=connectTo();
-            $stmt=$mysqli->prepare('DELETE FROM emp WHERE noemp = ?');
-            $stmt->bind_param("i", $thisDelete);
-            $stmt->execute();
-        }
-
-        // recherche d'un employe
-        public function rechercheUnEmploye($noemp){
-
-            $mysqli=connectTo();
-            $stmt = $mysqli->prepare('SELECT * FROM emp WHERE noemp=?');
-            $stmt->bind_param('i', $noemp);
-            $stmt->execute();
-            $rs = $stmt->get_result();
-            $data = $rs->fetch_array(MYSQLI_ASSOC);
-            $mysqli->close();
-            return $data;
-        }
-
-        // Modifier une ligne
-        public function editEmploye(Employe2 $employe): void
-        {
-            $mysqli=connectTo();
-            $stmt = $mysqli->prepare("UPDATE emp SET  nom=?, prenom=?, emploi=?, sup=?, embauche=?, sal=?, comm=?  WHERE noemp=?");
-            $id = $employe->getNoemp();
-            $nom = $employe->getNom();
-            $prenom = $employe->getPrenom();
-            $emp = $employe->getEmploi();
-            $sup = $employe->getSup();
-            $embauche = $employe->getEmbauche();
-            $sal = $employe->getSal();
-            $comm = $employe->getComm();
-
-            $stmt->bind_param('sssisddi', $nom, $prenom, $emp, $sup, $embauche, $sal, $comm, $id);
-            $stmt->execute();
-            $mysqli->close();
-        }
-        // Fonction Recherche des numero d'employes'different dans le tableau employes
-        public function supEmployes(){
-
-            $mysqli=connectTo();
-            $src=mysqli_query($mysqli , 'SELECT DISTINCT sup FROM emp');
-            $i = 1;
-            while ($row = mysqli_fetch_array($src, MYSQLI_ASSOC)){
-                $array[$i] = $row["sup"];
-                $i ++;
-            }
-            return $array;
+        public function deleteEmp($thisDelete){
+            EmployesMysqliDAO::deleteEmployes($thisDelete);
         }
 
     }

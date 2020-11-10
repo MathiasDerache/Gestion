@@ -12,7 +12,13 @@ session_start();
 </head>
 <body>
     <div class="container formulaire">
-    <form action= "ajout_utilisateur.php?ajout" method="post">
+        <div class="row text-center">
+            <div class="col-12">
+                <h2 class="titre">Inscription</h2>
+                <hr>
+            </div>
+        </div>
+    <form action= "../Contrôleur/ajout_utilisateur.php?ajout" method="post">
     
         <div class="row une">
              <div class="col-lg-12">
