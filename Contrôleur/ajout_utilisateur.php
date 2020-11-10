@@ -7,7 +7,7 @@ session_start();
     $data = UtilisateurService::rechercheUser($_POST["username"]);
     if(empty($data)){
 
-        UtilisateurService::add($_POST["username"], password_hash($_POST["mdp"], PASSWORD_DEFAULT),  "utilisateur" );
+        UtilisateurService::addUtilisateur($_POST["username"], password_hash($_POST["mdp"], PASSWORD_DEFAULT),  "utilisateur" );
     }
 
 ?>
