@@ -19,7 +19,8 @@ if(!isset($_SESSION["userName"]) || $_SESSION["profil"] != "admin"){
 <div class="container formulaire">
     <?php
 
-        include('../DAO/ServiceMysqliDAO.php');
+        include('../Métier/Service2.php');
+        include_once("../Service/ServiceService.php");
 
 
         if ($_GET["action"] == "ajout") {
@@ -48,7 +49,7 @@ if(!isset($_SESSION["userName"]) || $_SESSION["profil"] != "admin"){
 
                 <div class="row une">
                         <div class="col-lg-12">
-                        <label for="noserv"> Noserv : </label>
+                        <label for="noserv"> Numéro de service : </label>
                         <input type="number" class="form-control" id="noserv" name="noserv" value="<?php echo $noserv ?>" placeholder="Saisir votre numéro de service" required>
                         </div>
                     </div>

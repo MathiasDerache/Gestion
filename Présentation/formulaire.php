@@ -19,8 +19,8 @@ if(!isset($_SESSION["userName"]) || $_SESSION["profil"] != "admin"){
 <div class="container formulaire">
     <?php
 
-        include('../DAO/EmployesMysqliDAO.php');
         include('../Métier/Employe2.php');
+        include_once('../Service/EmployesService.php');
 
         if ($_GET["action"] == "ajout") {
             $action='action=ajout';
@@ -60,7 +60,7 @@ if(!isset($_SESSION["userName"]) || $_SESSION["profil"] != "admin"){
     
                <div class="row une">
                     <div class="col-lg-12">
-                    <label for="noemp"> Noemp : </label>
+                    <label for="noemp"> Numéro d'employé : </label>
                     <input type="number" class="form-control" id="noemp" name="noemp" value="<?php echo $noemp1 ?>" placeholder="Saisir votre numéro employé" required>
                     </div>
                 </div>
@@ -73,7 +73,7 @@ if(!isset($_SESSION["userName"]) || $_SESSION["profil"] != "admin"){
 
                 
                     <div class="col-lg-6">
-                    <label for="prenom"> Prenom : </label>
+                    <label for="prenom"> Prénom : </label>
                     <input type="text" class="form-control" id="prenom" name="prenom" value="<?php echo $prenom1 ?>" placeholder="Saisir votre prénom"><br />
                     </div>
                 </div>
@@ -85,7 +85,7 @@ if(!isset($_SESSION["userName"]) || $_SESSION["profil"] != "admin"){
                     </div>
 
                     <div class="col-lg-4">
-                    <label for="sup"> Sup : </label>
+                    <label for="sup"> Supérieur : </label>
                     <input type="text" class="form-control" id="sup" name="sup" value="<?php echo $sup1 ?>" placeholder="saisir numéro de supérieur"><br />
                     </div>
                 </div>
@@ -109,7 +109,7 @@ if(!isset($_SESSION["userName"]) || $_SESSION["profil"] != "admin"){
 
                 <div class="row une">
                     <div class="col-lg-12">
-                    <label for="noserv"> Noserv : </label>
+                    <label for="noserv"> Numéro de Service : </label>
                     <input type="number" class="form-control" id="noserv" name="noserv" value="<?php echo $noserv1 ?>" placeholder="saisir votre numéro de service" required><br />
                     </div>
                 </div>
