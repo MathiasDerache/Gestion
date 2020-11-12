@@ -14,6 +14,5 @@
         public function deleteServ($thisDelete){
             ServiceMysqliDAO::deleteService($thisDelete);
         }
-
     }
 ?>

@@ -15,6 +15,5 @@
         public function deleteEmp($thisDelete){
             EmployesMysqliDAO::deleteEmployes($thisDelete);
         }
-
     }
 ?>
