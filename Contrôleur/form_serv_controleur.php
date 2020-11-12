@@ -1,8 +1,8 @@
 <?php
 session_start();
-// if(!isset($_SESSION["userName"]) || $_SESSION["profil"] != "admin"){
-//     header('Location: form_connexion.php');
-// };
+if(!isset($_SESSION["userName"]) || $_SESSION["profil"] != "admin"){
+    header('Location: form_connexion_controleur.php');
+};
 
 include('../Métier/Service2.php');
 include_once("../Service/ServiceService.php");
