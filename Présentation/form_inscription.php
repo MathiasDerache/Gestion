@@ -1,16 +1,18 @@
 <?php
-session_start();
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-    <title>inscription</title>
-</head>
-<body>
+function head(){
+    echo '<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <link rel="stylesheet" href="../Présentation/style.css">
+        <title>inscription</title>
+    </head>';
+}
+
+function form(){
+    echo '<body>
     <div class="container formulaire">
         <div class="row text-center">
             <div class="col-12">
@@ -18,7 +20,7 @@ session_start();
                 <hr>
             </div>
         </div>
-    <form action= "../Contrôleur/ajout_utilisateur.php?ajout" method="post">
+    <form action= "user_ajoute_controleur.php?ajout" method="post">
     
         <div class="row une">
              <div class="col-lg-12">
@@ -36,16 +38,24 @@ session_start();
 
         <div class="row align-center">
             <div class="col-lg-12">
-                <input type="submit" value="S'inscrire" class="valide">
+                <input type="submit" value="Inscription" class="valide">
             </div>
         </div>
     </form>
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-12 text-center textP"><h2 class="insc">Déjà inscrit ? <a href="form_connexion.php">Connectez vous !</a></h2></div>
+            <div class="col-lg-12 text-center textP"><h2 class="insc">Déjà inscrit ? <a href="form_connexion_controleur.php">Connectez vous !</a></h2></div>
         </div>
     </div>
 
 </body>
-</html>
+</html>';
+}
+
+function affichageComplet(){
+    head();
+    form();
+}
+?>
+

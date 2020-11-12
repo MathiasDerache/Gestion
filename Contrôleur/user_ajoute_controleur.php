@@ -28,7 +28,7 @@ session_start();
            <?php if(empty($data)){ echo '<h2 class="acc">Inscription réussi !<br>Connetez vous pour accèder au portail</h2>';}else{echo '<h2 class="acc">User Name déja utilisé !</h2>';} ?>
         </div>
         <div class="col-lg-10 text-center rowP">
-        <?php if(empty($data)){ echo '<a href="../Présentation/form_connexion.php"><button type="button" class="btn btn-primary portail">Me connecter</button></a>';}else{ echo '<a href="../Présentation/Form_inscription.php"><button type="button" class="btn btn-primary portail">Réessayer</button></a> ';} ?>
+        <?php if(empty($data)){ echo '<a href="form_connexion_controleur.php"><button type="button" class="btn btn-primary portail">Me connecter</button></a>';}else{ echo '<a href="form_inscription_controleur.php"><button type="button" class="btn btn-primary portail">Réessayer</button></a> ';} ?>
         </div>
     </div>
 </div>
