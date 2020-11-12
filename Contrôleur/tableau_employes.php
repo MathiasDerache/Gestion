@@ -1,5 +1,8 @@
  <?php
 session_start();
+// if(!isset($_SESSION["userName"]) || $_SESSION["profil"] != "admin"){
+//     header('Location: form_connexion.php');
+// };
 include('../Service/EmployesService.php');
 include_once('../Métier/Employe2.php');
 include('../Présentation/affichage_tableau_emp.php');

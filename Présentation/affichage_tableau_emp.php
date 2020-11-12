@@ -1,12 +1,5 @@
 <?php
-    function protect(){
-        session_start();
-        if(!isset($_SESSION["userName"])){
-            header('Location: form_connexion.php');
-        };
 
-        include('../Service/ServiceService.php');
-    }
 
     function head(){
 
@@ -50,7 +43,7 @@
                     if($_SESSION["profil"] == "admin"){
                  echo '<div class="row">
                     <div class=" col-lg-12 text-center">
-                        <form action="../Présentation/formulaire.php?action=ajout" method="post" >
+                        <form action="form_emp_controleur.php?action=ajout" method="post" >
                                 <input type="submit" value="Ajouter" class="add">
                         </form>
                     </div>

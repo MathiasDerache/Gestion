@@ -28,7 +28,7 @@
                 echo "<td>" . $value["service"] . "</td>";
                 echo "<td>" . $value["ville"] . "</td>";
                 if($_SESSION["profil"] == "admin"){
-                    echo '<td> <a href="../Présentation/formulaire_services.php?action=modif&NOSERV='  .$value["noserv"]  .'"><button type="button" class="btn btn-primary modif">Modifier</button></a> </td>';
+                    echo '<td> <a href="form_serv_controleur.php?action=modif&NOSERV='  .$value["noserv"]  .'"><button type="button" class="btn btn-primary modif">Modifier</button></a> </td>';
                     // condition pour afficher les bouttons supprimer uniquement sur les lignes concernés
                     if(!array_search($value["noserv"], ServiceMysqliDAO::serviceEmployes())){
 

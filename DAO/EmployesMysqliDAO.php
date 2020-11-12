@@ -36,7 +36,7 @@
                 echo "<td>" . $value["noserv"] . "</td>";
             
                 if($_SESSION["profil"] == "admin"){
-                    echo '<td> <a href="../Présentation/formulaire.php?action=modif&NOEMP='  .$value["noemp"]  .'"><button type="button" class="btn btn-primary modif">Modifier</button></a> </td>';
+                    echo '<td> <a href="form_emp_controleur.php?action=modif&NOEMP='  .$value["noemp"]  .'"><button type="button" class="btn btn-primary modif">Modifier</button></a> </td>';
                     // condition pour afficher les bouttons supprimer uniquement sur les lignes concernés
                     if(!array_search($value["noemp"], EmployesMysqliDAO::supEmployes())){
                         echo '<td> <a href="tableau_employes.php?action=delete&NOEMP=' .$value["noemp"]   .'"><button type="button" class="btn btn-danger">SUPPR</button></a> </td>';
