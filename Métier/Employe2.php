@@ -11,7 +11,7 @@
         private $comm;
         private $noserv;
 
-        // Construc par defaut
+        //Construc par defaut
 
         /**
          * Get the value of noemp

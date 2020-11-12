@@ -5,7 +5,7 @@
         private $service;
         private $ville;
 
-        // Construc par defaut
+        //Construc par defaut
 
         /**
          * Get the value of noserv
