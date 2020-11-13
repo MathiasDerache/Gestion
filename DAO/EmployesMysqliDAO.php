@@ -76,14 +76,17 @@
         // recherche d'un employe
         static function rechercheUnEmploye($noemp){
 
+            $employe = new Employe2();
+
             $mysqli=EmployesMysqliDAO::connectTo();
             $stmt = $mysqli->prepare('SELECT * FROM emp WHERE noemp=?');
             $stmt->bind_param('i', $noemp);
             $stmt->execute();
             $rs = $stmt->get_result();
             $data = $rs->fetch_array(MYSQLI_ASSOC);
+            $employe->setNoemp($data["noemp"])->setNom($data["nom"])->setPrenom($data["prenom"])->setEmploi($data["emploi"])->setSup($data["sup"])->setEmbauche($data["embauche"])->setSal($data["sal"])->setComm($data["comm"])->setNoserv($data["noserv"]);
             $mysqli->close();
-            return $data;
+            return $employe;
         }
 
         // Modifier une ligne

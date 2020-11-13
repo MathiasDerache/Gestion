@@ -66,14 +66,17 @@
         // recherche d'un service
         static function rechercheUnService($noserv){
 
+            $service = new Service2();
+
             $mysqli=ServiceMysqliDAO::connectTo();
             $stmt = $mysqli->prepare('SELECT * FROM serv WHERE noserv=?');
             $stmt->bind_param('i', $noserv);
             $stmt->execute();
             $rs = $stmt->get_result();
             $data = $rs->fetch_array(MYSQLI_ASSOC);
+            $service->setNoserv($data["noserv"])->setService($data["service"])->setVille($data["ville"]);
             $mysqli->close();
-            return $data;
+            return $service;
         }
 
         // Modifier une ligne
