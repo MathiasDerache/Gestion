@@ -1,6 +1,6 @@
 <?php
-
-    class ServiceMysqliDAO{
+    include_once("../Métier/Service2.php");
+    class ServiceMysqliDAO extends Service2{
 
         // Connecte à la base de données
         static function connectTo(){
@@ -11,34 +11,39 @@
 
         // Recherche le tableau des services
         static function rechercheService(){
-            
+
             $mysqli=ServiceMysqliDAO::connectTo();
             mysqli_query($mysqli, 'SELECT * FROM serv');
             $serv = mysqli_query($mysqli, 'SELECT * FROM serv');
-            $row = mysqli_fetch_all($serv, MYSQLI_ASSOC);
-            return $row;
+            $data = mysqli_fetch_all($serv, MYSQLI_ASSOC);
+            foreach ($data as $value) {
+                $tab[] = $services = new Service2();
+                $services->setNoServ($value["noserv"])->setService($value["service"])->setVille($value["ville"]);
+            }
+            return $tab;
             
         }
         // affiche le tableau des services
-        static function afficherService($row){
+        static function afficherService($tab){
 
-            foreach ($row as $value) { 
+            foreach ($tab as $value) { 
                 echo  "<tr>";
-                echo "<td>" . $value["noserv"] . "</td>";
-                echo "<td>" . $value["service"] . "</td>";
-                echo "<td>" . $value["ville"] . "</td>";
+                echo "<td>" . $value->getNoServ(). "</td>";
+                echo "<td>" . $value->getService() . "</td>";
+                echo "<td>" . $value->getVille(). "</td>";
                 if($_SESSION["profil"] == "admin"){
-                    echo '<td> <a href="form_serv_controleur.php?action=modif&NOSERV='  .$value["noserv"]  .'"><button type="button" class="btn btn-primary modif">Modifier</button></a> </td>';
+                    echo '<td> <a href="form_serv_controleur.php?action=modif&NOSERV='  .$value->getNoServ()  .'"><button type="button" class="btn btn-primary modif">Modifier</button></a> </td>';
                     // condition pour afficher les bouttons supprimer uniquement sur les lignes concernés
-                    if(!array_search($value["noserv"], ServiceMysqliDAO::serviceEmployes())){
+                    if(!array_search($value->getNoServ(), ServiceMysqliDAO::serviceEmployes())){
 
-                            echo '<td> <a href="tableau_services.php?action=delete&NOSERV=' .$value["noserv"]   .'"><button type="button" class="btn btn-danger">SUPPR</button></a> </td>';
+                            echo '<td> <a href="tableau_services.php?action=delete&NOSERV=' .$value->getNoServ()   .'"><button type="button" class="btn btn-danger">SUPPR</button></a> </td>';
                     }
                 }
                     echo "</tr>";
             }
                     
         }
+        
         // ajout service
         static function add(Service2 $service2): void
         {

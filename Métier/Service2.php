@@ -4,6 +4,7 @@
         private $noserv;
         private $service;
         private $ville;
+        
 
         //Construc par defaut
 
@@ -66,4 +67,5 @@
 
             return $this;
         }
+
     }

@@ -1,6 +1,6 @@
  <?php
 session_start();
-if(!isset($_SESSION["userName"]) || $_SESSION["profil"] != "admin"){
+if(!isset($_SESSION["userName"])){
     header('Location: form_connexion_controleur.php');
 };
 include('../Service/EmployesService.php');

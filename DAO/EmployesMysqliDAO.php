@@ -15,31 +15,36 @@
             $mysqli=EmployesMysqliDAO::connectTo();
             mysqli_query($mysqli, 'SELECT * FROM emp');
             $serv = mysqli_query($mysqli, 'SELECT * FROM emp');
-            $row = mysqli_fetch_all($serv, MYSQLI_ASSOC);
-            return $row;
+            $data = mysqli_fetch_all($serv, MYSQLI_ASSOC);
+            foreach ($data as $value) {
+                $tab[] = $employes = new Employe2();
+                $employes->setNoemp($value["noemp"])->setNom($value["nom"])->setPrenom($value["prenom"])->setEmploi($value["emploi"])->setSup($value["sup"])->setEmbauche($value["embauche"])->setSal($value["sal"])->setComm($value["comm"])->setNoserv($value["noserv"]);
+            }
+            return $tab;
             
         }
+        
 
         // affiche le tableau des employes
         static function affichageEmployes($row){
             foreach ($row as $value) { 
 
                 echo  "<tr>";
-                echo "<td>" . $value["noemp"] . "</td>";
-                echo "<td>" . $value["nom"] . "</td>";
-                echo "<td>" . $value["prenom"] . "</td>";
-                echo "<td>" . $value["emploi"] . "</td>";
-                echo "<td>" . $value["sup"] . "</td>";
-                echo "<td>" . $value["embauche"] . "</td>";
-                if($_SESSION["profil"] == "admin"){echo "<td>" . $value["sal"] . "</td>";};
-                if($_SESSION["profil"] == "admin"){echo "<td>" . $value["comm"] . "</td>";};
-                echo "<td>" . $value["noserv"] . "</td>";
+                echo "<td>" . $value->getNoemp() . "</td>";
+                echo "<td>" . $value->getNom() . "</td>";
+                echo "<td>" . $value->getPrenom() . "</td>";
+                echo "<td>" . $value->getEmploi() . "</td>";
+                echo "<td>" . $value->getSup(). "</td>";
+                echo "<td>" . $value->getEmbauche() . "</td>";
+                if($_SESSION["profil"] == "admin"){echo "<td>" . $value->getSal() . "</td>";};
+                if($_SESSION["profil"] == "admin"){echo "<td>" . $value->getComm() . "</td>";};
+                echo "<td>" . $value->getNoserv() . "</td>";
             
                 if($_SESSION["profil"] == "admin"){
-                    echo '<td> <a href="form_emp_controleur.php?action=modif&NOEMP='  .$value["noemp"]  .'"><button type="button" class="btn btn-primary modif">Modifier</button></a> </td>';
+                    echo '<td> <a href="form_emp_controleur.php?action=modif&NOEMP='  .$value->getNoemp()  .'"><button type="button" class="btn btn-primary modif">Modifier</button></a> </td>';
                     // condition pour afficher les bouttons supprimer uniquement sur les lignes concernés
-                    if(!array_search($value["noemp"], EmployesMysqliDAO::supEmployes())){
-                        echo '<td> <a href="tableau_employes.php?action=delete&NOEMP=' .$value["noemp"]   .'"><button type="button" class="btn btn-danger">SUPPR</button></a> </td>';
+                    if(!array_search($value->getNoemp(), EmployesMysqliDAO::supEmployes())){
+                        echo '<td> <a href="tableau_employes.php?action=delete&NOEMP=' .$value->getNoemp()   .'"><button type="button" class="btn btn-danger">SUPPR</button></a> </td>';
                     }
                 }
                 
