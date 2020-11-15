@@ -7,7 +7,7 @@
         private $ville;
         
 
-        //Construc par defaut
+        //Constructeur par defaut
 
         /**
          * Get the value of noserv

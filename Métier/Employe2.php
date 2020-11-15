@@ -12,7 +12,7 @@
         private $comm;
         private $noserv;
 
-        //Construc par defaut
+        //Constructeur par defaut
 
         /**
          * Get the value of noemp
