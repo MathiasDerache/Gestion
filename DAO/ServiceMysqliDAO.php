@@ -1,6 +1,7 @@
 <?php
-    include_once("../Métier/Service2.php");
-    class ServiceMysqliDAO extends Service2{
+
+    include_once('InterServDao.php');
+    class ServiceMysqliDAO{
 
         // Connecte à la base de données
         static function connectTo(){

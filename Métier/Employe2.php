@@ -1,5 +1,6 @@
 <?php
-    class Employe2{
+    include_once('Objet.php');
+    class Employe2 extends Objet{
 
         private $noemp;
         private $nom;

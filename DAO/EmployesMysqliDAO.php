@@ -1,5 +1,6 @@
 <?php
 
+    include_once('InterServDao.php');
     class EmployesMysqliDAO{
 
         // Connecte à la base de données

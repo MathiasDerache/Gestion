@@ -1,5 +1,6 @@
 <?php
-    class Service2{
+    include_once('Objet.php');
+    class Service2 extends Objet{
         
         private $noserv;
         private $service;
