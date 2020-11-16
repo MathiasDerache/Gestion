@@ -1,14 +1,14 @@
 
 <?php
-include_once('../Métier/Employes2.php');
+include_once('../Métier/Employe2.php');
 
 //interface employé
 
 interface InterEmpDao{
 
-    public function addEmploye(Employe2 $employe): void;
-    public function editEmploye(Employe2 $employe): void;
-    public function deleteEmployes(int $id): void;
-    public function rechercheUnEmploye(int $id): Employe2;
-    public function rechercheEmployes(): array;
+    public static function addEmploye(Employe2 $employe): void;
+    public static function editEmploye(Employe2 $employe): void;
+    public static function deleteEmployes(Employe2 $id);
+    public static function rechercheUnEmploye( $id);
+    public static function rechercheEmployes();
 }

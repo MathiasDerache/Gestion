@@ -1,7 +1,7 @@
 <?php
-
+    include_once('../Métier/Service2.php');
     include_once('InterServDao.php');
-    class ServiceMysqliDAO{
+    class ServiceMysqliDAO implements InterServDao{
 
         // Connecte à la base de données
         static function connectTo(){
@@ -86,7 +86,7 @@
         }
 
         // Modifier une ligne
-        static function editService(Service2 $service2): void
+        static function editService($service2): void
         {
             $mysqli=ServiceMysqliDAO::connectTo();
             $stmt = $mysqli->prepare("UPDATE serv SET  service=?, ville=? WHERE noserv=?");

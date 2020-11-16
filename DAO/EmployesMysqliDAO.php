@@ -1,7 +1,7 @@
 <?php
 
-    include_once('InterServDao.php');
-    class EmployesMysqliDAO{
+    include_once('InterEmpDao.php');
+    class EmployesMysqliDAO implements InterEmpDao{
 
         // Connecte à la base de données
         static function connectTo(){

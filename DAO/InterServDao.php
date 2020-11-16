@@ -4,11 +4,11 @@ include_once('../Métier/Service2.php');
 
 //interface employé
 
-interface InterEmpDao{
+interface InterServDao{
 
-    public function add(Employe2 $employe): void;
-    public function editService(Employe2 $employe): void;
-    public function deleteService(int $id): void;
-    public function rechercheUnService(int $id): Employe2;
-    public function rechercheService(): array;
+    public static function add(Service2 $employe): void;
+    public static function editService(Servcie2 $employe): void;
+    public static function deleteService(Service2 $id);
+    public static function rechercheUnService($id);
+    public static function rechercheService();
 }
