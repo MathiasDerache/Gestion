@@ -1,13 +1,18 @@
 <?php
+    require("DAOException.php");
     include_once('../Métier/Service2.php');
     include_once('InterServDao.php');
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     class ServiceMysqliDAO implements InterServDao{
 
         // Connecte à la base de données
         static function connectTo(){
-
-            $mysqli = new mysqli('localhost', 'mathiasderache', 'mathiasderache', 'gestion_employes');
-            return $mysqli;
+            try{
+                $mysqli = new mysqli('localhost', 'mathiasderache', 'mathiasderache', 'gestion_employes');
+                return $mysqli;
+            }catch(mysqli_sql_exception $e){
+                throw  $e;
+            }
         }
 
         // Recherche le tableau des services
@@ -48,14 +53,19 @@
         // ajout service
         static function add(Service2 $service2): void
         {
-            $mysqli=ServiceMysqliDAO::connectTo();
-            $stmt = $mysqli->prepare("INSERT INTO serv VALUES(?,?,?)");
             $noser = $service2->getNoserv();
             $serv = $service2->getService();
             $ville = $service2->getVille();
-            $stmt->bind_param('iss', $noser, $serv, $ville);
-            $stmt->execute();
-            $mysqli->close();
+            try{
+                $mysqli=ServiceMysqliDAO::connectTo();
+                $stmt = $mysqli->prepare("INSERT INTO serv VALUES(?,?,?)");
+                $stmt->bind_param('iss', $noser, $serv, $ville);
+                $stmt->execute();
+            }catch(mysqli_sql_exception $e){
+                throw new DAOException($e->getMessage(), $e->getCode());
+            }finally{
+                $mysqli->close();
+            }
         }
 
         //Supprimer une ligne

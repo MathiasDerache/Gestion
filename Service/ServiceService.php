@@ -1,9 +1,14 @@
 <?php
     include("../DAO/ServiceMysqliDAO.php");
+    require("ServiceException.php");
     class ServiceService extends ServiceMysqliDAO{
 
         public function addServ($service2){
-            ServiceMysqliDAO::add($service2);
+            try{
+                ServiceMysqliDAO::add($service2);
+            }catch(DAOException $de){
+                throw new ServiceException($de->getMessage(), $de->getCode());
+            }
         }
 
 

@@ -17,20 +17,17 @@
             }
 
         }
-
-
         // Recherche le tableau des employes
         static function rechercheEmployes(){
-            $mysqli=EmployesMysqliDAO::connectTo();
-            mysqli_query($mysqli, 'SELECT * FROM emp');
-            $serv = mysqli_query($mysqli, 'SELECT * FROM emp');
-            $data = mysqli_fetch_all($serv, MYSQLI_ASSOC);
-            foreach ($data as $value) {
-                $tab[] = $employes = new Employe2();
-                $employes->setNoemp($value["noemp"])->setNom($value["nom"])->setPrenom($value["prenom"])->setEmploi($value["emploi"])->setSup($value["sup"])->setEmbauche($value["embauche"])->setSal($value["sal"])->setComm($value["comm"])->setNoserv($value["noserv"]);
-            }
-            return $tab;
-            
+                $mysqli=EmployesMysqliDAO::connectTo();
+                mysqli_query($mysqli, 'SELECT * FROM emp');
+                $serv = mysqli_query($mysqli, 'SELECT * FROM emp');
+                $data = mysqli_fetch_all($serv, MYSQLI_ASSOC);
+                foreach ($data as $value) {
+                    $tab[] = $employes = new Employe2();
+                    $employes->setNoemp($value["noemp"])->setNom($value["nom"])->setPrenom($value["prenom"])->setEmploi($value["emploi"])->setSup($value["sup"])->setEmbauche($value["embauche"])->setSal($value["sal"])->setComm($value["comm"])->setNoserv($value["noserv"]);
+                }
+                return $tab;
         }
         
 

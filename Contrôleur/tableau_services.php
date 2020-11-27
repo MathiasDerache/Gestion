@@ -23,7 +23,12 @@ if($_SESSION["profil"] == "admin"){
     
             $service2 = new Service2();
             $service2->setNoserv($noserv)->setService($serv)->setVille($ville);
-            $data = ServiceService::addServ($service2);
+            try{
+                $data = ServiceService::addServ($service2);
+            }catch(ServiceException $se){
+                afficheErreurAjout($se->getMessage(), $se->getCode());
+            }
+
             head();
             table();
             affiche();

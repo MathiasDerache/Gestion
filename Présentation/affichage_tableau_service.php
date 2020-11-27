@@ -1,5 +1,12 @@
 <?php
 
+require_once('../Contrôleur/tableau_services.php');
+
+function afficheErreurAjout($message, $errorCode=null){
+    if($errorCode && $errorCode == 1062){
+        echo "<div class='alert alert-danger' role='alert'>Impossible de créer un nouveau service avec un numéro de service déjà existant !</div>";
+    }
+}
     function head(){
         echo '
         <!DOCTYPE html>

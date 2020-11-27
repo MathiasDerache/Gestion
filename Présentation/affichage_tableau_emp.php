@@ -3,7 +3,7 @@ require_once('../Contrôleur/tableau_employes.php');
 
 function afficheErreurAjout($message, $errorCode=null){
     if($errorCode && $errorCode == 1062){
-        echo "Erreur";
+        echo "<div class='alert alert-danger' role='alert'>Impossible de créer un nouvel employé avec un numéro d'employé déjà existant !</div>";
     }
 }
 
@@ -59,8 +59,8 @@ function afficheErreurAjout($message, $errorCode=null){
 
     function affiche(){
     // Check Crud.php
-    $donnees=EmployesMysqliDAO::rechercheEmployes();           
-    EmployesMysqliDAO::affichageEmployes($donnees);               // Partie Affichage
+        $donnees=EmployesMysqliDAO::rechercheEmployes();    
+        EmployesMysqliDAO::affichageEmployes($donnees);               // Partie Affichage
     }
 
     function btn(){
