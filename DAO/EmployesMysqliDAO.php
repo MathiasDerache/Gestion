@@ -1,13 +1,21 @@
 <?php
-
+    
+    require("DAOException.php");
     include_once('InterEmpDao.php');
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+
     class EmployesMysqliDAO implements InterEmpDao{
 
         // Connecte à la base de données
         static function connectTo(){
+            try{
+                $mysqli = new mysqli('localhost', 'mathiasderache', 'mathiasderache', 'gestion_employes');
+                return $mysqli;
+            }catch(mysqli_sql_exception $e){
+                throw  $e;
+            }
 
-            $mysqli = new mysqli('localhost', 'mathiasderache', 'mathiasderache', 'gestion_employes');
-            return $mysqli;
         }
 
 
@@ -53,23 +61,33 @@
             }
         }
         // Ajouter une ligne
-        static function addEmploye(Employe2 $employe): void
-        {
-            $mysqli=EmployesMysqliDAO::connectTo();
-            $stmt = $mysqli->prepare("INSERT INTO emp VALUES(?,?,?,?,?,?,?,?,?)");
-            $id = $employe->getNoemp();
-            $nom = $employe->getNom();
-            $prenom = $employe->getPrenom();
-            $emp = $employe->getEmploi();
-            $sup = $employe->getSup();
-            $embauche = $employe->getEmbauche();
-            $sal = $employe->getSal();
-            $comm = $employe->getComm();
-            $noser = $employe->getNoserv();
-            $stmt->bind_param('isssisddi',$id, $nom, $prenom, $emp, $sup, $embauche, $sal, $comm, $noser);
-            $stmt->execute();
-            $mysqli->close();
-        }
+            static function addEmploye(Employe2 $employe): void
+            {
+
+                $id = $employe->getNoemp();
+                $nom = $employe->getNom();
+                $prenom = $employe->getPrenom();
+                $emp = $employe->getEmploi();
+                $sup = $employe->getSup();
+                $embauche = $employe->getEmbauche();
+                $sal = $employe->getSal();
+                $comm = $employe->getComm();
+                $noser = $employe->getNoserv();
+                try { 
+                    $mysqli=EmployesMysqliDAO::connectTo();
+                    $stmt = $mysqli->prepare("INSERT INTO emp VALUES(?,?,?,?,?,?,?,?,?)");
+                    $stmt->bind_param('isssisddi',$id, $nom, $prenom, $emp, $sup, $embauche, $sal, $comm, $noser);
+                    $stmt->execute();
+
+                }
+            catch(mysqli_sql_exception $e){
+               throw new DAOException($e->getMessage(), $e->getCode());
+            }finally{
+                $mysqli->close();
+            }
+            }
+
+        
         //Supprimer une ligne
         static function deleteEmployes($thisDelete){
 
@@ -80,21 +98,20 @@
         }
 
         // recherche d'un employe
-        static function rechercheUnEmploye($noemp){
+            static function rechercheUnEmploye($noemp){
+                
+                $employe = new Employe2();
 
-            $employe = new Employe2();
-
-            $mysqli=EmployesMysqliDAO::connectTo();
-            $stmt = $mysqli->prepare('SELECT * FROM emp WHERE noemp=?');
-            $stmt->bind_param('i', $noemp);
-            $stmt->execute();
-            $rs = $stmt->get_result();
-            $data = $rs->fetch_array(MYSQLI_ASSOC);
-            $employe->setNoemp($data["noemp"])->setNom($data["nom"])->setPrenom($data["prenom"])->setEmploi($data["emploi"])->setSup($data["sup"])->setEmbauche($data["embauche"])->setSal($data["sal"])->setComm($data["comm"])->setNoserv($data["noserv"]);
-            $mysqli->close();
-            return $employe;
+                $mysqli=EmployesMysqliDAO::connectTo();
+                $stmt = $mysqli->prepare('SELECT * FROM emp WHERE noemp=?');
+                $stmt->bind_param('i', $noemp);
+                $stmt->execute();
+                $rs = $stmt->get_result();
+                $data = $rs->fetch_array(MYSQLI_ASSOC);
+                $employe->setNoemp($data["noemp"])->setNom($data["nom"])->setPrenom($data["prenom"])->setEmploi($data["emploi"])->setSup($data["sup"])->setEmbauche($data["embauche"])->setSal($data["sal"])->setComm($data["comm"])->setNoserv($data["noserv"]);
+                $mysqli->close();
+                return $employe;
         }
-
         // Modifier une ligne
         static function editEmploye(Employe2 $employe): void
         {

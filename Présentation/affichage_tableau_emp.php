@@ -1,5 +1,11 @@
 <?php
+require_once('../Contrôleur/tableau_employes.php');
 
+function afficheErreurAjout($message, $errorCode=null){
+    if($errorCode && $errorCode == 1062){
+        echo "Erreur";
+    }
+}
 
     function head(){
 

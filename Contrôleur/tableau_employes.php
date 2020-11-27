@@ -6,6 +6,7 @@ if(!isset($_SESSION["userName"])){
 include('../Service/EmployesService.php');
 include_once('../Métier/Employe2.php');
 include('../Présentation/affichage_tableau_emp.php');
+require_once("../Service/ServiceException.php");
 
 if(empty($_POST) && empty($_GET['action'])){
     head();
@@ -30,7 +31,14 @@ if($_SESSION["profil"] == "admin"){
             $noser = $_POST['noserv'];
 
             $employe->setNoemp($id)->setNom($nom)->setPrenom($prenom)->setEmploi($emp)->setSup($sup)->setEmbauche($embauche)->setSal($sal)->setComm($comm)->setNoserv($noser);
-            EmployesService::addEmp($employe);                          // Ajout de l'employe
+            try{
+
+            EmployesService::addEmp($employe);      // ajout employé
+
+            }catch(ServiceException $se){
+            afficheErreurAjout($se->getMessage(), $se->getCode());
+            }          
+
             head();
             table();
             affiche();
