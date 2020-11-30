@@ -15,7 +15,11 @@
 
 
         public function editEmp($employe){
-            EmployesMysqliDAO::editEmploye($employe);
+            try{
+                EmployesMysqliDAO::editEmploye($employe);
+            }catch(DAOException $de){
+                throw new ServiceException($de->getMessage(), $de->getCode());
+            }
         }
 
         public function deleteEmp($thisDelete){

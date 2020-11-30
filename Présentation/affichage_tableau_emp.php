@@ -7,6 +7,13 @@ function afficheErreurAjout($message, $errorCode=null){
     }
 }
 
+function afficheErreurModif($message, $errorCode=null){
+    print_r($errorCode);
+    if($errorCode && $errorCode == 1062){
+        echo "<div class='alert alert-danger' role='alert'>Impossible de créer un nouvel employé avec un numéro d'employé déjà existant !</div>";
+    }
+}
+
     function head(){
 
         echo '<!DOCTYPE html>

@@ -59,7 +59,12 @@ if($_SESSION["profil"] == "admin"){
             $noser = $_POST['noserv'];
 
             $employe->setNoemp($id)->setNom($nom)->setPrenom($prenom)->setEmploi($emp)->setSup($sup)->setEmbauche($embauche)->setSal($sal)->setComm($comm)->setNoserv($noser);
-            EmployesService::editEmp($employe);
+            try{
+                EmployesService::editEmp($employe);
+            }catch(ServiceException $se){
+                afficheErreurModif($se->getMessage(), $se->getCode());
+            }
+
             head();
             table();
             affiche();

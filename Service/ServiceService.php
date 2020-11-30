@@ -13,7 +13,11 @@
 
 
         public function editServ($service2){
-            ServiceMysqliDAO::editService($service2);
+            try{
+                ServiceMysqliDAO::editService($service2);
+            }catch(DAOException $de){
+                throw new ServiceException($de->getMessage(), $de->getCode());
+            }
         }
 
         public function deleteServ($thisDelete){

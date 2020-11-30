@@ -7,6 +7,14 @@ function afficheErreurAjout($message, $errorCode=null){
         echo "<div class='alert alert-danger' role='alert'>Impossible de créer un nouveau service avec un numéro de service déjà existant !</div>";
     }
 }
+
+function afficheErreurModif($message, $errorCode=null){
+    print_r($errorCode);
+    if($errorCode && $errorCode == 1062){
+        echo "<div class='alert alert-danger' role='alert'>Impossible de créer un nouveau service avec un numéro de service déjà existant !</div>";
+    }
+}
+
     function head(){
         echo '
         <!DOCTYPE html>

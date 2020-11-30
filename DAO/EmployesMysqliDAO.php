@@ -112,8 +112,6 @@
         // Modifier une ligne
         static function editEmploye(Employe2 $employe): void
         {
-            $mysqli=EmployesMysqliDAO::connectTo();
-            $stmt = $mysqli->prepare("UPDATE emp SET  nom=?, prenom=?, emploi=?, sup=?, embauche=?, sal=?, comm=?  WHERE noemp=?");
             $id = $employe->getNoemp();
             $nom = $employe->getNom();
             $prenom = $employe->getPrenom();
@@ -122,11 +120,19 @@
             $embauche = $employe->getEmbauche();
             $sal = $employe->getSal();
             $comm = $employe->getComm();
-
-            $stmt->bind_param('sssisddi', $nom, $prenom, $emp, $sup, $embauche, $sal, $comm, $id);
-            $stmt->execute();
-            $mysqli->close();
+            try{
+                $mysqli=EmployesMysqliDAO::connectTo();
+                $stmt = $mysqli->prepare("UPDATE emp SET  nom=?, prenom=?, emploi=?, sup=?, embauche=?, sal=?, comm=?  WHERE noemp=?");
+                $stmt->bind_param('sssisddi', $nom, $prenom, $emp, $sup, $embauche, $sal, $comm, $id);
+                $stmt->execute();
+            }catch(mysqli_sql_exception $e){
+                throw new DAOException($e->getMessage(), $e->getCode());
+            }finally{
+                $mysqli->close();
+            }
         }
+
+
         // Fonction Recherche des numero d'employes'different dans le tableau employes
         static function supEmployes(){
 

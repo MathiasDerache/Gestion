@@ -98,14 +98,19 @@
         // Modifier une ligne
         static function editService($service2): void
         {
-            $mysqli=ServiceMysqliDAO::connectTo();
-            $stmt = $mysqli->prepare("UPDATE serv SET  service=?, ville=? WHERE noserv=?");
             $serv = $service2->getService();
             $ville = $service2->getVille();
             $id = $service2->getNoserv();
-            $stmt->bind_param( 'ssi', $serv, $ville, $id );
-            $stmt->execute();
-            $mysqli->close();
+        try{
+                $mysqli=ServiceMysqliDAO::connectTo();
+                $stmt = $mysqli->prepare("UPDATE serv SET  service=?, ville=? WHERE noserv=?");
+                $stmt->bind_param( 'ssi', $serv, $ville, $id );
+                $stmt->execute();
+            }catch(mysqli_sql_exception $e){
+                throw new DAOException($e->getMessage(), $e->getCode());
+            }finally{
+                $mysqli->close();
+            }
         }
 
 

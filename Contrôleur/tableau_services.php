@@ -43,7 +43,12 @@ if($_SESSION["profil"] == "admin"){
             $service2 = new Service2();
             $service2->setNoserv($noserv)->setService($serv)->setVille($ville);
             // Check Crud_Service
-            ServiceService::editServ($service2);
+            try{
+                ServiceService::editServ($service2);
+            }catch(ServiceException $se){
+                afficheErreurModif($se->getMessage(), $se->getCode());
+            }
+
             head();
             table();
             affiche();
