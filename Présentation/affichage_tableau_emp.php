@@ -1,6 +1,7 @@
 <?php
 require_once('../Contrôleur/tableau_employes.php');
 
+
 function afficheErreurAjout($message, $errorCode=null){
     if($errorCode && $errorCode == 1062){
         echo "<div class='alert alert-danger' role='alert'>Impossible de créer un nouvel employé avec un numéro d'employé déjà existant !</div>";
@@ -27,15 +28,18 @@ function afficheErreurModif($message, $errorCode=null){
             <link rel="stylesheet" href="../Présentation/style.css">
         </head>';
     }
-
-    function table(){
+    
+    function table($compteur){
         echo'<body>
         <div class="container">
             <div class="row text-center">
-                    <div class="col-12">
+                <div class="col-12">
+                </div>
+                <div class="col-12">
+                    <h2 class="titre"> '.$compteur.' Employés ajoutés ce jour.</h2>
                         <h2 class="titre">Tableau des Employés</h2>
                         <hr>
-                    </div>
+                </div>
                 </div>
                 <table class="table-hover table-bordered">
                     <thead class="table">

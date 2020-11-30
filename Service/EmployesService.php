@@ -24,6 +24,11 @@
 
         public function deleteEmp($thisDelete){
             EmployesMysqliDAO::deleteEmployes($thisDelete);
+     
+        }
+
+        public function count(){
+           return EmployesMysqliDAO::count();
         }
     }
 ?>

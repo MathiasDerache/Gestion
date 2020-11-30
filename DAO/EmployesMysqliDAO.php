@@ -17,6 +17,13 @@
             }
 
         }
+
+        static function updateCount(){
+
+            $mysqli=EmployesMysqliDAO::connectTo();
+
+        }
+
         // Recherche le tableau des employes
         static function rechercheEmployes(){
                 $mysqli=EmployesMysqliDAO::connectTo();
@@ -57,10 +64,10 @@
                 echo "</tr>";
             }
         }
+
         // Ajouter une ligne
             static function addEmploye(Employe2 $employe): void
             {
-
                 $id = $employe->getNoemp();
                 $nom = $employe->getNom();
                 $prenom = $employe->getPrenom();
@@ -70,10 +77,11 @@
                 $sal = $employe->getSal();
                 $comm = $employe->getComm();
                 $noser = $employe->getNoserv();
+                $ajout = date("Y-m-d");
                 try { 
                     $mysqli=EmployesMysqliDAO::connectTo();
-                    $stmt = $mysqli->prepare("INSERT INTO emp VALUES(?,?,?,?,?,?,?,?,?)");
-                    $stmt->bind_param('isssisddi',$id, $nom, $prenom, $emp, $sup, $embauche, $sal, $comm, $noser);
+                    $stmt = $mysqli->prepare("INSERT INTO emp VALUES(?,?,?,?,?,?,?,?,?,?)");
+                    $stmt->bind_param('isssisddis',$id, $nom, $prenom, $emp, $sup, $embauche, $sal, $comm, $noser, $ajout);
                     $stmt->execute();
 
                 }
@@ -122,7 +130,7 @@
             $comm = $employe->getComm();
             try{
                 $mysqli=EmployesMysqliDAO::connectTo();
-                $stmt = $mysqli->prepare("UPDATE emp SET  nom=?, prenom=?, emploi=?, sup=?, embauche=?, sal=?, comm=?  WHERE noemp=?");
+                $stmt = $mysqli->prepare("UPDATE emp SET  nom=?, prenom=?, emploi=?, sup=?, embauche=?, sal=?, comm=? WHERE noemp=?");
                 $stmt->bind_param('sssisddi', $nom, $prenom, $emp, $sup, $embauche, $sal, $comm, $id);
                 $stmt->execute();
             }catch(mysqli_sql_exception $e){
@@ -144,6 +152,20 @@
                 $i ++;
             }
             return $array;
+        }
+
+        public function count(){
+
+            $date = date("Y-m-d");
+            $mysqli=EmployesMysqliDAO::connectTo();
+            $stmt = $mysqli->prepare("SELECT COUNT(noemp) AS COMPTEUR FROM emp WHERE Ajout=?");
+            $stmt->bind_param("s", $date);
+            $stmt->execute();
+            $rs = $stmt->get_result();
+            $data = $rs->fetch_array(MYSQLI_ASSOC);
+            $compteur = $data['COMPTEUR'];
+            $mysqli->close();
+            return $compteur;
         }
 
     }

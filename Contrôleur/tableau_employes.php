@@ -9,15 +9,18 @@ include('../Présentation/affichage_tableau_emp.php');
 require_once("../Service/ServiceException.php");
 
 if(empty($_POST) && empty($_GET['action'])){
+    $compteur = EmployesService::count();
     head();
-    table();
+    table($compteur);
     affiche();
     btn();
 }
+
 if($_SESSION["profil"] == "admin"){
     if (!empty($_POST) && isset($_GET['action']) && $_GET['action'] == 'ajout') { 
         if (isset($_POST['noemp']) && !empty($_POST['noemp']) && isset($_POST['noserv']) && !empty($_POST['noserv'])) { 
-    
+
+
             $employe = new Employe2();                                                  
     
             $id = $_POST['noemp'];
@@ -38,9 +41,9 @@ if($_SESSION["profil"] == "admin"){
             }catch(ServiceException $se){
             afficheErreurAjout($se->getMessage(), $se->getCode());
             }          
-
+            $compteur = EmployesService::count();
             head();
-            table();
+            table($compteur);
             affiche();
             btn();
         }
@@ -64,17 +67,18 @@ if($_SESSION["profil"] == "admin"){
             }catch(ServiceException $se){
                 afficheErreurModif($se->getMessage(), $se->getCode());
             }
-
+            $compteur = EmployesService::count();
             head();
-            table();
+            table($compteur);
             affiche();
             btn();
     }
     elseif(isset($_GET["action"]) && $_GET["action"] == "delete"){                         // Partie Delete
             // Check Crud.php
             EmployesService::deleteEmp($_GET["NOEMP"]);
+            $compteur = EmployesService::count();
             head();
-            table();
+            table($compteur);
             affiche();
             btn();
     }
