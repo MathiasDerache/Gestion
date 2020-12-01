@@ -89,6 +89,29 @@ function afficheErreurModif($message, $errorCode=null){
                 <a href="../Présentation/portail.php"><button type="button" class="btn btn-primary btn-lg autre">Portail</button></a>
             </div>
         </div>
+        <div class="row">
+        <div class="row une">
+            <div class="col-lg-3">
+            <label for="nom"> Nom : </label>
+            <input type="text" class="form-control" id="nom" name="nom" placeholder="Saisir un nom">
+            </div>
+
+            <div class="col-lg-3">
+            <label for="prenom"> Prenom : </label>
+            <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Saisir un prénom">
+            </div>
+
+            <div class="col-lg-3">
+            <label for="emploi"> Emploi : </label>
+            <input type="text" class="form-control" id="emploi" name="emploi" placeholder="Saisir un emploi">
+            </div>
+
+            <div class="col-lg-3">
+            <label for="noserv"> Numéro de service : </label>
+            <input type="number" class="form-control" id="noserv" name="noserv" placeholder="Saisir un numéro de service">
+            </div>
+    </div>
+        </div>
     </div>
     
     
@@ -97,5 +120,3 @@ function afficheErreurModif($message, $errorCode=null){
     </html>';
     }
 ?>
-
-
