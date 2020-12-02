@@ -168,5 +168,22 @@
             return $compteur;
         }
 
+        public function afficheFiltre(){
+            if(params){
+                $requete = "SELECT e.* from employe as e INNER JOIN service as s ON e.noserv = s.noserv WHERE ";
+                $i = 0;
+                foreach($params as $key => $value){
+                    if($i > 0){
+                        $requete = $requete . " AND ";
+                    }
+                    $requete = $requete .$key . "='%" . $value . "%' ";
+                    $i++;
+                }
+                $data = $rs->fetch_all(MYSQLI_ASSOC);
+            } else{
+                $data = $this->searchAll();
+            }
+        }
+
     }
 ?>

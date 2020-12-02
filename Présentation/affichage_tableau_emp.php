@@ -41,7 +41,7 @@ function afficheErreurModif($message, $errorCode=null){
                         <hr>
                 </div>
                 </div>
-                <table class="table-hover table-bordered">
+                <table class="table-hover table-bordered" id="tableau">
                     <thead class="table">
         
                         <td>Noemp</td>
@@ -91,6 +91,7 @@ function afficheErreurModif($message, $errorCode=null){
         </div>
         <div class="row">
         <div class="row une">
+            <form action="" method="get">
             <div class="col-lg-3">
             <label for="nom"> Nom : </label>
             <input type="text" class="form-control" id="nom" name="nom" placeholder="Saisir un nom">
@@ -108,14 +109,18 @@ function afficheErreurModif($message, $errorCode=null){
 
             <div class="col-lg-3">
             <label for="noserv"> Numéro de service : </label>
-            <input type="number" class="form-control" id="noserv" name="noserv" placeholder="Saisir un numéro de service">
+            <input type="number" class="form-control" id="noserv" name="noserv" placeholder="Saisir num. de service">
             </div>
+            </form>
     </div>
         </div>
     </div>
     
     
     </body>
+    <script src="../Contrôleur/jquery-3.5.1.min.js"></script>
+    <script src="cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js></script>
+    <script src="../Contrôleur/app.js"></script>
     
     </html>';
     }
