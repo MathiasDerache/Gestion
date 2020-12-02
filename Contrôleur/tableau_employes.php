@@ -23,15 +23,15 @@ if($_SESSION["profil"] == "admin"){
 
             $employe = new Employe2();                                                  
     
-            $id = $_POST['noemp'];
-            $nom = $_POST['nom'];
-            $prenom = $_POST['prenom'];
-            $emp = $_POST['emploi'];
-            $sup = $_POST['sup'] ? $_POST['sup'] : NULL;
-            $embauche = $_POST['embauche'];
-            $sal = $_POST['sal'] ? $_POST['sal'] : NULL;
-            $comm = $_POST['comm'] ? $_POST['comm'] : NULL;
-            $noser = $_POST['noserv'];
+            $id = htmlentities($_POST['noemp']);
+            $nom = htmlentities($_POST['nom']);
+            $prenom = htmlentities($_POST['prenom']);
+            $emp = htmlentities($_POST['emploi']);
+            $sup = htmlentities($_POST['sup']) ? htmlentities($_POST['sup']) : NULL;
+            $embauche = htmlentities($_POST['embauche']);
+            $sal = htmlentities($_POST['sal']) ? htmlentities($_POST['sal']) : NULL;
+            $comm = htmlentities($_POST['comm']) ? htmlentities($_POST['comm']) : NULL;
+            $noser = htmlentities($_POST['noserv']);
 
             $employe->setNoemp($id)->setNom($nom)->setPrenom($prenom)->setEmploi($emp)->setSup($sup)->setEmbauche($embauche)->setSal($sal)->setComm($comm)->setNoserv($noser);
             try{
@@ -51,15 +51,15 @@ if($_SESSION["profil"] == "admin"){
             
             $employe = new Employe2();
             
-            $id = $_POST['noemp'];
-            $nom = $_POST['nom'];
-            $prenom = $_POST['prenom'];
-            $emp = $_POST['emploi'];
-            $sup = $_POST['sup'] ? $_POST['sup'] : NULL;
-            $embauche = $_POST['embauche'];
-            $sal = $_POST['sal'] ? $_POST['sal'] : NULL;
-            $comm = $_POST['comm'] ? $_POST['comm'] : NULL;
-            $noser = $_POST['noserv'];
+            $id = htmlentities($_POST['noemp']);
+            $nom = htmlentities($_POST['nom']);
+            $prenom = htmlentities($_POST['prenom']);
+            $emp = htmlentities($_POST['emploi']);
+            $sup = htmlentities($_POST['sup']) ? htmlentities($_POST['sup']) : NULL;
+            $embauche = htmlentities($_POST['embauche']);
+            $sal = htmlentities($_POST['sal']) ? htmlentities($_POST['sal']) : NULL;
+            $comm = htmlentities($_POST['comm']) ? htmlentities($_POST['comm']) : NULL;
+            $noser = htmlentities($_POST['noserv']);
 
             $employe->setNoemp($id)->setNom($nom)->setPrenom($prenom)->setEmploi($emp)->setSup($sup)->setEmbauche($embauche)->setSal($sal)->setComm($comm)->setNoserv($noser);
             try{

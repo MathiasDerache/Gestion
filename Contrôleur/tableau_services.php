@@ -17,9 +17,9 @@ if($_SESSION["profil"] == "admin"){
     if (!empty($_POST) && isset($_GET['action']) && $_GET['action'] == 'ajout') {       // Ajout 
         if (isset($_POST['noserv'])) { 
             
-            $noserv = $_POST['noserv'];
-            $serv = $_POST['service'] ? $_POST['service']  : NULL;
-            $ville = $_POST['ville'] ? $_POST['ville']  : NULL;
+            $noserv = htmlentities($_POST['noserv']);
+            $serv = htmlentities($_POST['service']) ? htmlentities($_POST['service'])  : NULL;
+            $ville = htmlentities($_POST['ville']) ? htmlentities($_POST['ville'])  : NULL;
     
             $service2 = new Service2();
             $service2->setNoserv($noserv)->setService($serv)->setVille($ville);
@@ -36,9 +36,9 @@ if($_SESSION["profil"] == "admin"){
         }
         }elseif (!empty($_GET) && isset($_GET['action']) && $_GET['action'] == 'modif') {   // Modif
 
-            $noserv = $_POST['noserv'];
-            $serv = $_POST['service'] ? $_POST['service']  : NULL;
-            $ville = $_POST['ville'] ? $_POST['ville']  : NULL;
+            $noserv = htmlentities($_POST['noserv']);
+            $serv = htmlentities($_POST['service']) ? htmlentities($_POST['service'])  : NULL;
+            $ville = htmlentities($_POST['ville']) ? htmlentities($_POST['ville'])  : NULL;
         
             $service2 = new Service2();
             $service2->setNoserv($noserv)->setService($serv)->setVille($ville);
